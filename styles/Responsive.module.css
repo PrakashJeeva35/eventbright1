@@ -1,0 +1,108 @@
+.poster {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.partyImage {
+  width: 100%;
+  height: 65vh;
+  background-image: url("https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGFydHl8ZW58MHx8MHx8fDA%3D");
+  display: grid;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.button51 {
+  background-color: whitesmoke;
+  border: 1px solid rgb(239, 248, 247);
+  box-sizing: border-box;
+  color: black;
+  font-family: "Avenir Next LT W01 Bold", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  padding: 16px 23px;
+  position: relative;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 40px;
+}
+
+.button51:hover,
+.button51:active {
+  outline: 0;
+}
+
+.button51:hover {
+  background-color: transparent;
+  cursor: pointer;
+  color: white;
+}
+
+.button51:before {
+  background-color: #f50672;
+  content: "";
+  height: calc(100% + 3px);
+  position: absolute;
+  right: -7px;
+  top: -9px;
+  transition: background-color 300ms ease-in;
+  width: 100%;
+  z-index: -1;
+}
+
+.button51:hover:before {
+  background-color: #f50672;
+}
+
+@media (min-width: 768px) {
+  .button51 {
+    padding: 16px 32px;
+  }
+}
+
+.selectEventTypeContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  column-gap: 25px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: rgb(221, 221, 221);
+  /* overflow: scroll; */
+  padding: 20px;
+  grid-row-gap: 10px;
+}
+
+.iconsCon {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 12%;
+  /* height: 70px; */
+  /* margin-top: 20px;
+  margin-bottom: 20px; */
+  padding: 20px;
+}
+
+.icons{
+  height: 110%;
+  /* width: 75%; */
+  color: black;
+}
+
+.eventChooseBar {
+  height: 20vh;
+  background-color: whitesmoke;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 10px;
+}
+
+.overSize {
+  /* grid-column-start: 2;
+  grid-column-end: 4; */
+}

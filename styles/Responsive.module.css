@@ -66,27 +66,16 @@
 .selectEventTypeContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-  column-gap: 25px;
+  /* column-gap: 25px; */
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color: rgb(221, 221, 221);
+  background-color: rgb(232, 232, 232);
   /* overflow: scroll; */
   padding: 20px;
   grid-row-gap: 10px;
 }
 
-.iconsCon {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  border-radius: 12%;
-  /* height: 70px; */
-  /* margin-top: 20px;
-  margin-bottom: 20px; */
-  padding: 20px;
-}
 
 .icons{
   height: 110%;
@@ -102,7 +91,33 @@
   padding: 10px;
 }
 
-.overSize {
-  /* grid-column-start: 2;
-  grid-column-end: 4; */
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #d4d4d4;
+  height: 20vh;
+  color: black;
+}
+
+.footer1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.footer2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.eventSlider {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-row-gap: 10px;
 }

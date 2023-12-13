@@ -16,6 +16,12 @@ import MenuItem from '@mui/material/MenuItem';
 import LiquorIcon from '@mui/icons-material/Liquor';
 import Link from '@mui/material/Link';
 import HomePoster from '../../../components/home/homePoster';
+import HomeFooter from '../../../components/home/footer';
+import HomeEventCard from '../../../components/home/eventCard';
+import SignUp from '../../../components/login/signup';
+
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 import { useState } from 'react';
 
@@ -27,6 +33,7 @@ export default function Home() {
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
+    const [showSignUpDialog, setShowSignUpDialog] = useState(false);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -35,16 +42,23 @@ export default function Home() {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = () => {
+    const handleCloseNavMenu = (e) => {
         setAnchorElNav(null);
+        if(e.target.innerText == 'Sign up') setShowSignUpDialog(true)
     };
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
 
+
+    const handleCloseSignUp = () => {
+        setShowSignUpDialog(false);
+    };
+
     return (
         <>
+            <SignUp open={showSignUpDialog} handleCloseSignUp={handleCloseSignUp}/>
             <AppBar color='inherit' position='static' variant='dense' sx={{
                 fontFamily: 'monospace',
                 fontWeight: 700,
@@ -129,29 +143,97 @@ export default function Home() {
                         {appTitle}
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent: 'end' } }}>
-                        {pages.map((page) => (
-                            <Link
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{
-                                    my: 2, 
-                                    color: 'black', 
-                                    display: 'block', 
-                                    fontFamily: 'Neue Plak Text,Neue Plak', 
-                                    fontWeight: 400,
-                                    marginLeft: '30px',
-                                    fontSize: '17px',
-                                    textDecoration: 'none',
-                                    letterSpacing: '1px'
-                                }}
-                            >
-                                {page}
-                            </Link>
-                        ))}
+                        {/* {pages.map((page) => ( */}
+                        <Link
+                            key='Find event'
+                            onClick={handleCloseNavMenu}
+                            sx={{
+                                my: 2,
+                                color: 'black',
+                                display: 'block',
+                                // fontFamily: 'Neue Plak Text,Neue Plak', 
+                                fontWeight: 400,
+                                marginLeft: '30px',
+                                fontSize: '17px',
+                                textDecoration: 'none',
+                                letterSpacing: '1px',
+                                ':hover': {
+                                    cursor: 'pointer',
+                                    color: 'blue'
+                                }
+                            }}
+                        >
+                            Find event
+                        </Link>
+                        <Link
+                            key='Create event'
+                            onClick={handleCloseNavMenu}
+                            sx={{
+                                my: 2,
+                                color: 'black',
+                                display: 'block',
+                                // fontFamily: 'Neue Plak Text,Neue Plak', 
+                                fontWeight: 400,
+                                marginLeft: '30px',
+                                fontSize: '17px',
+                                textDecoration: 'none',
+                                letterSpacing: '1px',
+                                ':hover': {
+                                    cursor: 'pointer',
+                                    color: 'blue'
+                                }
+                            }}
+                        >
+                            Create event
+                        </Link>
+                        <Link
+                            key='Log in'
+                            onClick={handleCloseNavMenu}
+                            sx={{
+                                my: 2,
+                                color: 'black',
+                                display: 'block',
+                                // fontFamily: 'Neue Plak Text,Neue Plak', 
+                                fontWeight: 400,
+                                marginLeft: '30px',
+                                fontSize: '17px',
+                                textDecoration: 'none',
+                                letterSpacing: '1px',
+                                ':hover': {
+                                    cursor: 'pointer',
+                                    color: 'blue'
+                                }
+                            }}
+                        >
+                            Log in
+                        </Link>
+                        <Link
+                            key='Sign up'
+                            onClick={handleCloseNavMenu}
+                            sx={{
+                                my: 2,
+                                color: 'black',
+                                display: 'block',
+                                // fontFamily: 'Neue Plak Text,Neue Plak', 
+                                fontWeight: 400,
+                                marginLeft: '30px',
+                                fontSize: '17px',
+                                textDecoration: 'none',
+                                letterSpacing: '1px',
+                                ':hover': {
+                                    cursor: 'pointer',
+                                    color: 'blue'
+                                }
+                            }}
+                        >
+                            Sign up
+                        </Link>
                     </Box>
                 </Toolbar>
             </AppBar >
-            <HomePoster/>
+            <HomePoster />
+            <HomeEventCard />
+            <HomeFooter />
         </>
     )
 }

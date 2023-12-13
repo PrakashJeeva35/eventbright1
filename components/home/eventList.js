@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -10,6 +10,35 @@ import Select from '@mui/material/Select';
 import AddLocationAltRoundedIcon from '@mui/icons-material/AddLocationAltRounded';
 
 export default function EventLister() {
+
+    const [currentLoc, setCurrentLoc] = useState("Use Current Location")
+    const [eventSelectCode, setEventSelectCode] = useState(null)
+
+    const getCurrentLocation = (e) => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+            });
+            console.log("Geolocation is not supported by this browser.", currentLoc);
+            setCurrentLoc('Salem')
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+    }
+
+    const handleChange = (event) => {
+        if (event.target.value == 1) {
+            setCurrentLoc('Salem')
+            setEventSelectCode(event.target.value)
+        }
+        else{
+            setCurrentLoc("Use Current Location")
+            setEventSelectCode(event.target.value)
+        }
+    };
+
     return (
         <Box sx={{ minWidth: 120 }}>
             <FormControl variant="standard" sx={{ m: 1 }} fullWidth>
@@ -17,16 +46,16 @@ export default function EventLister() {
                 <Select
                     labelId="demo-simple-select-standard-label"
                     id="demo-simple-select-standard"
-                    label="Select City"
+                    onChange={handleChange}
+                    value={eventSelectCode}
                 >
-                    <MenuItem value={10}>
+                    <MenuItem value={1} onClick={getCurrentLocation} >
                         <ListItemIcon>
-                            <AddLocationAltRoundedIcon />
+                            {eventSelectCode == 1 ? <></> : <AddLocationAltRoundedIcon />}
                         </ListItemIcon>
-                        <span>Use Current Location</span>
+                        {currentLoc}
                     </MenuItem>
-                    <MenuItem value={20}>Chennai</MenuItem>
-                    <MenuItem value={30}>Bangalore</MenuItem>
+                    <MenuItem value={2}>Online Events</MenuItem>
                 </Select>
             </FormControl>
         </Box>

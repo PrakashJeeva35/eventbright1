@@ -2,12 +2,12 @@ import styles from '../../styles/Responsive.module.css'
 
 //MUI
 import MusicNoteRoundedIcon from '@mui/icons-material/MusicNoteRounded';
-import NightlifeOutlinedIcon from '@mui/icons-material/NightlifeOutlined';
-import MasksOutlinedIcon from '@mui/icons-material/MasksOutlined';
-import HolidayVillageOutlinedIcon from '@mui/icons-material/HolidayVillageOutlined';
-import HealthAndSafetyOutlinedIcon from '@mui/icons-material/HealthAndSafetyOutlined';
-import CasinoOutlinedIcon from '@mui/icons-material/CasinoOutlined';
-import FastfoodOutlinedIcon from '@mui/icons-material/FastfoodOutlined';
+import NightlifeRoundedIcon from '@mui/icons-material/NightlifeRounded';
+import MasksRoundedIcon from '@mui/icons-material/MasksRounded';
+import HolidayVillageRoundedIcon from '@mui/icons-material/HolidayVillageRounded';
+import HealthAndSafetyRoundedIcon from '@mui/icons-material/HealthAndSafetyRounded';
+import CasinoRoundedIcon from '@mui/icons-material/CasinoRounded';
+import FastfoodRoundedIcon from '@mui/icons-material/FastfoodRounded';
 
 import EventLister from './eventList';
 
@@ -24,31 +24,31 @@ export default function HomePoster() {
             </div>
 
             <div className={styles.selectEventTypeContainer}>
-                <IconButton color="primary" className={styles.iconsCon}>
-                    <MusicNoteRoundedIcon className={styles.icons} />
+                <IconButton color="primary" size="large">
+                    <MusicNoteRoundedIcon  fontSize="inherit"/>
                 </IconButton>
-                <IconButton color="primary" className={styles.iconsCon}>
-                    <NightlifeOutlinedIcon className={styles.icons} />
+                <IconButton color="primary" size="large">
+                    <NightlifeRoundedIcon  />
                 </IconButton>
-                <IconButton color="primary" className={styles.iconsCon}>
-                    <MasksOutlinedIcon className={styles.icons} />
+                <IconButton color="primary" size="large">
+                    <MasksRoundedIcon  />
                 </IconButton>
-                <IconButton color="primary" className={styles.iconsCon}>
-                    <HolidayVillageOutlinedIcon className={styles.icons} />
+                <IconButton color="primary" size="large">
+                    <HolidayVillageRoundedIcon  />
                 </IconButton>
-                <IconButton color="primary" className={styles.iconsCon}>
-                    <HealthAndSafetyOutlinedIcon className={styles.icons} />
+                <IconButton color="primary" size="large">
+                    <HealthAndSafetyRoundedIcon  />
                 </IconButton>
-                <IconButton color="primary" className={styles.iconsCon}>
-                    <CasinoOutlinedIcon className={styles.icons} />
+                <IconButton color="primary" size="large">
+                    <CasinoRoundedIcon  />
                 </IconButton>
-                <IconButton color="primary" className={styles.iconsCon}>
-                    <FastfoodOutlinedIcon className={styles.icons} />
+                <IconButton color="primary" size="large">
+                    <FastfoodRoundedIcon  />
                 </IconButton>
             </div>
             <div className={styles.eventChooseBar}>
-                <div>
-                    <h1>Popular in</h1>
+                <div style={{marginLeft: '10px'}}>
+                    <h2>Popular in</h2>
                 </div>
                 <EventLister/>
                 <div>

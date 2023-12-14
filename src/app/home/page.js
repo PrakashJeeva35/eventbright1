@@ -19,6 +19,9 @@ import HomePoster from '../../../components/home/homePoster';
 import HomeFooter from '../../../components/home/footer';
 import HomeEventCard from '../../../components/home/eventCard';
 import SignUp from '../../../components/login/signup';
+import SignIn from '../../../components/login/signin';
+
+import { useRouter } from 'next/navigation';
 
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -34,6 +37,7 @@ export default function Home() {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
     const [showSignUpDialog, setShowSignUpDialog] = useState(false);
+    const [showSignInDialog, setShowSignInDialog] = useState(false);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -44,21 +48,29 @@ export default function Home() {
 
     const handleCloseNavMenu = (e) => {
         setAnchorElNav(null);
-        if(e.target.innerText == 'Sign up') setShowSignUpDialog(true)
+        if (e.target.innerText.toLowerCase() == 'sign up') setShowSignUpDialog(true)
+        else if (e.target.innerText.toLowerCase() == 'log in') setShowSignInDialog(true)
+        else if (e.target.innerText.toLowerCase() == 'create event') router.push('/event/create')
     };
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
 
-
     const handleCloseSignUp = () => {
         setShowSignUpDialog(false);
     };
 
+    const handleCloseSignIn = () => {
+        setShowSignInDialog(false);
+    };
+
+    const router = useRouter();
+
     return (
         <>
-            <SignUp open={showSignUpDialog} handleCloseSignUp={handleCloseSignUp}/>
+            <SignIn open={showSignInDialog} handleCloseSignIn={handleCloseSignIn} />
+            <SignUp open={showSignUpDialog} handleCloseSignUp={handleCloseSignUp} />
             <AppBar color='inherit' position='static' variant='dense' sx={{
                 fontFamily: 'monospace',
                 fontWeight: 700,

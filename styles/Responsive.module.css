@@ -121,3 +121,31 @@
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   grid-row-gap: 10px;
 }
+
+.eventCreateForm1 {
+  display: grid;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.eventCreateForm1Header {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.eventCreateForm1Cap {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.eventCreateForm1Inputs {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 50px;
+}
+
+.eventCreateForm1Select {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+}

@@ -17,9 +17,11 @@
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-form-wizard-component": "^0.1.7",
     "react-responsive-carousel": "^3.2.23",
     "react-swipeable-views": "^0.14.0",
-    "reactjs-popup": "^2.0.6"
+    "reactjs-popup": "^2.0.6",
+    "reactstrap": "^9.2.1"
   },
   "devDependencies": {
     "eslint": "^8",

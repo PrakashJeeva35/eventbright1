@@ -34,8 +34,6 @@ const defaultTheme = createTheme();
 
 export default function SignUp(props) {
 
-    console.log(props)
-
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -51,7 +49,7 @@ export default function SignUp(props) {
 
     return (
         <Dialog onClose={handleClose} open={props.open}>
-            <DialogTitle>Set backup account</DialogTitle>
+            <DialogTitle>Create your account here</DialogTitle>
             <ThemeProvider theme={defaultTheme}>
                 <Container component="main" maxWidth="xs">
                     <CssBaseline />

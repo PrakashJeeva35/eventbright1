@@ -125,17 +125,19 @@
 .eventCreateForm1 {
   display: grid;
   justify-content: flex-start;
-  gap: 5px;
+  gap: 10px;
 }
 
 .eventCreateForm1Header {
   display: grid;
   grid-template-columns: 1fr;
+  justify-self: start;
 }
 
 .eventCreateForm1Cap {
   display: grid;
   grid-template-columns: 1fr;
+  justify-self: start;
 }
 
 .eventCreateForm1Inputs {
@@ -147,5 +149,11 @@
 .eventCreateForm1Select {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+}
+
+.eventCreateForm2GroupBtn {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   column-gap: 10px;
 }

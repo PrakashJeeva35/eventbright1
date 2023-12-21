@@ -1,6 +1,7 @@
 'use client';
 
 import React from "react";
+import { useState } from 'react'
 import FormWizard from "react-form-wizard-component";
 import "react-form-wizard-component/dist/style.css";
 
@@ -15,12 +16,16 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { Typography, Container, Select, Menu, MenuItem } from '@mui/material';
+import { Typography, Container, Select, Menu, MenuItem, Button } from '@mui/material';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
-function EventDetail() {
+function EventDetailForm1() {
 
   return (
-    <Container maxWidth='md' sx={{backgroundColor:'white', display: 'grid', justifyContent: 'center', padding: '10px', marginBottom: '10px'}}>
+    <Container maxWidth='md' sx={{ backgroundColor: 'white', display: 'grid', justifyContent: 'center', padding: '15px', marginBottom: '10px' }}>
       <Box className={styles.eventCreateForm1}>
         <Typography variant="h4" position='-moz-initial' className={styles.eventCreateForm1Header}>
           Basic Info
@@ -37,6 +42,7 @@ function EventDetail() {
           <Select
             labelId="demo-simple-select-helper-label"
             id="demo-simple-select-helper"
+            label="Type"
           >
             <MenuItem value={10}>Ten</MenuItem>
             <MenuItem value={20}>Twenty</MenuItem>
@@ -45,6 +51,7 @@ function EventDetail() {
           <Select
             labelId="demo-simple-select-helper-label"
             id="demo-simple-select-helper"
+            label="Category"
           >
             <MenuItem value={10}>Ten</MenuItem>
             <MenuItem value={20}>Twenty</MenuItem>
@@ -58,6 +65,109 @@ function EventDetail() {
           Improve discoverability of your event by adding tags relevant to the subject matter.
         </Typography>
         <TextField className={styles.eventCreateForm1Inputs} fullWidth label="Please add a tag" id="fullWidth" />
+      </Box>
+    </Container>
+  )
+}
+
+function EventDetailForm2() {
+
+  const [showVenue, setShowVenue] = useState(true);
+  const [showOnlineEvent, setShowOnlineEvent] = useState(false);
+
+  const setShower = (e) => {
+    if (e.toLowerCase() == 'venue') {
+      setShowVenue(true);
+      setShowOnlineEvent(false);
+    } else if (e.toLowerCase() == 'online event') {
+      setShowVenue(false);
+      setShowOnlineEvent(true);
+    } else {
+      setShowVenue(false);
+      setShowOnlineEvent(false);
+    }
+
+  }
+
+  return (
+    <Container maxWidth='md' sx={{ backgroundColor: 'white', display: 'grid', justifyContent: 'center', padding: '15px', marginBottom: '10px' }}>
+      <Box className={styles.eventCreateForm1}>
+        <Typography variant="h4" position='-moz-initial' className={styles.eventCreateForm1Header}>
+          Location
+        </Typography>
+        <Typography variant="body2" gutterBottom className={styles.eventCreateForm1Cap}>
+          Help people in the area discover your event and let attendees know where to show up.
+        </Typography>
+        <div className={styles.eventCreateForm2GroupBtn}>
+          <Button variant="outlined" onClick={() => setShower('Venue')}>Venue</Button>
+          <Button variant="outlined" onClick={() => setShower('Online event')}>Online event</Button>
+          <Button variant="outlined" onClick={() => setShower('To be announced')}>To be announced</Button>
+        </div>
+
+        {
+          showVenue ?
+            <div>
+              <Typography variant="body2" gutterBottom className={styles.eventCreateForm1Cap}>
+                Venue location
+              </Typography>
+              <TextField className={styles.eventCreateForm1Inputs} fullWidth label="Search for venue" id="fullWidth" />
+            </div>
+            :
+            null
+        }
+
+        {
+          showOnlineEvent ?
+            <Typography variant="body2" gutterBottom className={styles.eventCreateForm1Cap}>
+              Online events have unique event pages where you can add links to livestreams and more
+            </Typography>
+            : null
+        }
+
+
+      </Box>
+    </Container>
+  )
+}
+
+function EventDetailForm3() {
+
+  const [showVenue, setShowVenue] = useState(true);
+  const [showOnlineEvent, setShowOnlineEvent] = useState(false);
+
+  const setShower = (e) => {
+    if (e.toLowerCase() == 'venue') {
+      setShowVenue(true);
+      setShowOnlineEvent(false);
+    } else if (e.toLowerCase() == 'online event') {
+      setShowVenue(false);
+      setShowOnlineEvent(true);
+    } else {
+      setShowVenue(false);
+      setShowOnlineEvent(false);
+    }
+
+  }
+
+  return (
+    <Container maxWidth='md' sx={{ backgroundColor: 'white', display: 'grid', justifyContent: 'center', padding: '15px', marginBottom: '10px' }}>
+      <Box className={styles.eventCreateForm1}>
+        <Typography variant="h4" position='-moz-initial' className={styles.eventCreateForm1Header}>
+          Date and time
+        </Typography>
+        <Typography variant="body2" gutterBottom className={styles.eventCreateForm1Cap}>
+          Tell event-goers when your event starts and ends so they can make plans to attend.
+        </Typography>
+        <div className={styles.eventCreateForm2GroupBtn}>
+          <Button variant="outlined" onClick={() => setShower('Venue')}>Single event</Button>
+        </div>
+
+        <LocalizationProvider dateAdapter={AdapterDayjs} >
+          <DemoContainer components={['DateTimePicker']}>
+            <DateTimePicker label="Basic date time picker" className={styles.eventCreateForm1Inputs}/>
+          </DemoContainer>
+        </LocalizationProvider>
+
       </Box>
     </Container>
   )
@@ -83,15 +193,13 @@ export default function simple() {
         onTabChange={tabChanged}
       >
         <FormWizard.TabContent title="Event Details" icon="ti-user">
-          <EventDetail />
+          <EventDetailForm1 />
         </FormWizard.TabContent>
         <FormWizard.TabContent title="Additional Info" icon="ti-settings">
-          <h3>Second Tab</h3>
-          <p>Some content for the second tab</p>
+          <EventDetailForm2 />
         </FormWizard.TabContent>
         <FormWizard.TabContent title="Last step" icon="ti-check">
-          <h3>Last Tab</h3>
-          <p>Some content for the last tab</p>
+          <EventDetailForm3 />
         </FormWizard.TabContent>
       </FormWizard>
       {/* add style */}

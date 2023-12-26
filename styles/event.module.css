@@ -1,0 +1,26 @@
+.eventCategoryContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-bottom: 10px;
+    width: 100%;
+    /* height: 20%; */
+}
+
+.eventImageContainer {
+    display: flex;
+    flex-direction: row;
+    /* overflow: scroll; */
+    height: 150px;
+}
+
+.eventPoster {
+    width: 200px;
+    margin-left: 7px;
+    border-radius: 5px;
+}
+
+.eventPoster:hover{
+    height: 180px;
+    width: 250px;
+    box-shadow: rgba(232, 59, 174, 0.25) 0px 54px 55px, rgba(226, 63, 251, 0.12) 0px -12px 30px, rgba(100, 202, 225, 0.12) 0px 4px 6px, rgba(32, 176, 233, 0.17) 0px 12px 13px, rgba(142, 46, 238, 0.09) 0px -3px 5px;
+}

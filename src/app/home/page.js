@@ -38,6 +38,7 @@ export default function Home() {
     const [anchorElUser, setAnchorElUser] = useState(null);
     const [showSignUpDialog, setShowSignUpDialog] = useState(false);
     const [showSignInDialog, setShowSignInDialog] = useState(false);
+    const [hideSign, setHideSign] = useState(false);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -51,18 +52,21 @@ export default function Home() {
         if (e.target.innerText.toLowerCase() == 'sign up') setShowSignUpDialog(true)
         else if (e.target.innerText.toLowerCase() == 'log in') setShowSignInDialog(true)
         else if (e.target.innerText.toLowerCase() == 'create event') router.push('/event/create')
+        else if (e.target.innerText.toLowerCase() == 'find event') router.push('/event/list')
     };
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
 
-    const handleCloseSignUp = () => {
+    const handleCloseSignUp = (e) => {
         setShowSignUpDialog(false);
+        if (e.openLogin) setShowSignInDialog(true);
     };
 
     const handleCloseSignIn = () => {
         setShowSignInDialog(false);
+        setHideSign(true);
     };
 
     const router = useRouter();
@@ -198,48 +202,55 @@ export default function Home() {
                         >
                             Create event
                         </Link>
-                        <Link
-                            key='Log in'
-                            onClick={handleCloseNavMenu}
-                            sx={{
-                                my: 2,
-                                color: 'black',
-                                display: 'block',
-                                // fontFamily: 'Neue Plak Text,Neue Plak', 
-                                fontWeight: 400,
-                                marginLeft: '30px',
-                                fontSize: '17px',
-                                textDecoration: 'none',
-                                letterSpacing: '1px',
-                                ':hover': {
-                                    cursor: 'pointer',
-                                    color: 'blue'
-                                }
-                            }}
-                        >
-                            Log in
-                        </Link>
-                        <Link
-                            key='Sign up'
-                            onClick={handleCloseNavMenu}
-                            sx={{
-                                my: 2,
-                                color: 'black',
-                                display: 'block',
-                                // fontFamily: 'Neue Plak Text,Neue Plak', 
-                                fontWeight: 400,
-                                marginLeft: '30px',
-                                fontSize: '17px',
-                                textDecoration: 'none',
-                                letterSpacing: '1px',
-                                ':hover': {
-                                    cursor: 'pointer',
-                                    color: 'blue'
-                                }
-                            }}
-                        >
-                            Sign up
-                        </Link>
+                        {
+                            hideSign == false ?
+                                <Link
+
+                                    key='Log in'
+                                    onClick={handleCloseNavMenu}
+                                    sx={{
+                                        my: 2,
+                                        color: 'black',
+                                        display: 'block',
+                                        // fontFamily: 'Neue Plak Text,Neue Plak', 
+                                        fontWeight: 400,
+                                        marginLeft: '30px',
+                                        fontSize: '17px',
+                                        textDecoration: 'none',
+                                        letterSpacing: '1px',
+                                        ':hover': {
+                                            cursor: 'pointer',
+                                            color: 'blue'
+                                        }
+                                    }}
+                                >
+                                    Log in
+                                </Link> : null
+                        }
+                        {
+                            hideSign == false ?
+                                <Link
+                                    key='Sign up'
+                                    onClick={handleCloseNavMenu}
+                                    sx={{
+                                        my: 2,
+                                        color: 'black',
+                                        display: 'block',
+                                        // fontFamily: 'Neue Plak Text,Neue Plak', 
+                                        fontWeight: 400,
+                                        marginLeft: '30px',
+                                        fontSize: '17px',
+                                        textDecoration: 'none',
+                                        letterSpacing: '1px',
+                                        ':hover': {
+                                            cursor: 'pointer',
+                                            color: 'blue'
+                                        }
+                                    }}
+                                >
+                                    Sign up
+                                </Link> : null
+                        }
                     </Box>
                 </Toolbar>
             </AppBar >

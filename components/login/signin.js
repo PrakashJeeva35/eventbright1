@@ -1,3 +1,13 @@
+// supabase
+import { createClient } from '@supabase/supabase-js';
+
+// Replace with your Supabase URL and API key
+const supabaseUrl = "https://gonsjfvfvuytjgpfpbmt.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdvbnNqZnZmdnV5dGpncGZwYm10Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcwMzE0MzkzNCwiZXhwIjoyMDE4NzE5OTM0fQ.gqQDcxdanrbtHLFs6z73fkOx86OUr7sJtU6zz6H_7Dw";
+
+// Create Supabase client
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -34,18 +44,37 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn(props) {
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log({
             email: data.get('email'),
             password: data.get('password'),
         });
+        let userData = await supabase.from('user').select('*');
+        if (userData.error) {
+            console.error('Error fetching data:', userData.error);
+        } else {
+            console.log("userData.data ",userData.data);
+        }
+        props.handleCloseSignIn({close: true});
     };
 
     const handleClose = (value) => {
         props.handleCloseSignIn();
     };
+
+    // const handleLogin = async () => {
+    //     let userData = await supabase.from('user').select('*').filter({
+    //         email: data.get('email')
+    //     });
+    //     if (userData.error) {
+    //         console.error('Error fetching data:', error.message);
+    //     } else {
+    //         console.log("userData.data ",userData.data);
+    //     }
+    //     props.handleCloseSignIn({close: true});
+    // };
 
     return (
         <Dialog onClose={handleClose} open={props.open}>
@@ -97,6 +126,7 @@ export default function SignIn(props) {
                                 fullWidth
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
+                                // onClick={handleLogin}
                             >
                                 Sign In
                             </Button>

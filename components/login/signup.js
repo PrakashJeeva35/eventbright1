@@ -1,3 +1,13 @@
+// supabase
+import { createClient } from '@supabase/supabase-js';
+
+// Replace with your Supabase URL and API key
+const supabaseUrl = "https://gonsjfvfvuytjgpfpbmt.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdvbnNqZnZmdnV5dGpncGZwYm10Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcwMzE0MzkzNCwiZXhwIjoyMDE4NzE5OTM0fQ.gqQDcxdanrbtHLFs6z73fkOx86OUr7sJtU6zz6H_7Dw";
+
+// Create Supabase client
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -34,13 +44,39 @@ const defaultTheme = createTheme();
 
 export default function SignUp(props) {
 
-    const handleSubmit = (event) => {
+    const [userData, setUserData] = useState({
+        first_name: null,
+        last_name: null,
+        email: null,
+        password: null
+    })
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log({
             email: data.get('email'),
             password: data.get('password'),
+            first_name: data.get('firstName'),
+            last_name: data.get('lastName')
         });
+
+        const userCreated = await supabase
+            .from('user')
+            .insert([{
+                email: data.get('email'),
+                password: data.get('password'),
+                first_name: data.get('firstName'),
+                last_name: data.get('lastName'),
+                is_deleted_yn: false
+            }]);
+
+        if (userCreated.error) {
+            console.error('Error fetching data:', userCreated.error.message);
+        } else {
+            console.log('Event created ', userCreated.data);
+            props.handleCloseSignUp({openLogin: true});
+        }
     };
 
     const handleClose = (value) => {
@@ -111,12 +147,12 @@ export default function SignUp(props) {
                                         autoComplete="new-password"
                                     />
                                 </Grid>
-                                <Grid item xs={12}>
+                                {/* <Grid item xs={12}>
                                     <FormControlLabel
                                         control={<Checkbox value="allowExtraEmails" color="primary" />}
                                         label="I want to receive inspiration, marketing promotions and updates via email."
                                     />
-                                </Grid>
+                                </Grid> */}
                             </Grid>
                             <Button
                                 type="submit"

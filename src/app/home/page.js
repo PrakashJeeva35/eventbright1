@@ -66,14 +66,17 @@ export default function Home() {
 
     const handleCloseSignIn = () => {
         setShowSignInDialog(false);
-        setHideSign(true);
     };
+
+    const handleRemoveloginLink = ()=>{
+        setHideSign(true);
+    }
 
     const router = useRouter();
 
     return (
         <>
-            <SignIn open={showSignInDialog} handleCloseSignIn={handleCloseSignIn} />
+            <SignIn open={showSignInDialog} handleCloseSignIn={handleCloseSignIn} handleRemoveloginLink={handleRemoveloginLink}/>
             <SignUp open={showSignUpDialog} handleCloseSignUp={handleCloseSignUp} />
             <AppBar color='inherit' position='static' variant='dense' sx={{
                 fontFamily: 'monospace',

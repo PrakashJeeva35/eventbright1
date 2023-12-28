@@ -22,9 +22,13 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Alert from '@mui/material/Alert';
 
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
+
+// React
+import { useState } from 'react';
 
 function Copyright(props) {
     return (
@@ -44,20 +48,29 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn(props) {
+
+    const [invalidUser, setInvalidUser] = useState(false);
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
+
+        let userData = await supabase.from('user').select('*').match({
             email: data.get('email'),
             password: data.get('password'),
         });
-        let userData = await supabase.from('user').select('*');
+
         if (userData.error) {
             console.error('Error fetching data:', userData.error);
         } else {
-            console.log("userData.data ",userData.data);
+            console.log("userData.data ", userData.data);
+            if (userData.data.length > 0) {
+                props.handleCloseSignIn();
+                props.handleRemoveloginLink();
+            } else {
+                setInvalidUser(true);
+            }
         }
-        props.handleCloseSignIn({close: true});
     };
 
     const handleClose = (value) => {
@@ -96,6 +109,11 @@ export default function SignIn(props) {
                         <Typography component="h1" variant="h5">
                             Sign in
                         </Typography>
+                        {
+                            invalidUser ?
+                                <Alert severity="error">User or password is invalid. Try again...</Alert>
+                                : null
+                        }
                         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                             <TextField
                                 margin="normal"
@@ -126,7 +144,7 @@ export default function SignIn(props) {
                                 fullWidth
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
-                                // onClick={handleLogin}
+                            // onClick={handleLogin}
                             >
                                 Sign In
                             </Button>
